@@ -19,7 +19,10 @@ class DelugeTransfer(object):
             self.disconnect()
 
         self.sock = socket.create_connection(hostport)
-        self.conn = ssl.wrap_socket(self.sock, None, None, False, ssl.CERT_NONE, ssl.PROTOCOL_TLSv1)
+        try:
+            self.conn = ssl.wrap_socket(self.sock, None, None, False, ssl.CERT_NONE, ssl.PROTOCOL_TLSv1)
+        except AttributeError:
+            self.conn = ssl.wrap_socket(self.sock, None, None, False, ssl.CERT_NONE, ssl.PROTOCOL_TLS)
         self.connected = True
 
     def disconnect(self):

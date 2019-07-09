@@ -19,9 +19,10 @@ class DelugeTransfer(object):
             self.disconnect()
 
         self.sock = socket.create_connection(hostport)
-        #https://docs.python.org/2/library/ssl.html
-        #do we need to specify the tls version at all?
-        self.conn = ssl.wrap_socket(self.sock, None, None, False, ssl.CERT_NONE, ssl.PROTOCOL_TLS)
+        try:
+            self.conn = ssl.wrap_socket(self.sock, None, None, False, ssl.CERT_NONE, ssl.PROTOCOL_TLSv1)
+        except AttributeError:
+            self.conn = ssl.wrap_socket(self.sock, None, None, False, ssl.CERT_NONE, ssl.PROTOCOL_TLS)
         self.connected = True
 
     def disconnect(self):

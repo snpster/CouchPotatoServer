@@ -19,7 +19,8 @@ class DelugeTransfer(object):
             self.disconnect()
 
         self.sock = socket.create_connection(hostport)
-        self.conn = ssl.wrap_socket(self.sock, None, None, False, ssl.CERT_NONE, ssl.PROTOCOL_TLSv1)
+        #this is the spot to change, can we just put it to 1.2?
+        self.conn = ssl.wrap_socket(self.sock, None, None, False, ssl.CERT_NONE, ssl.PROTOCOL_TLSv1.2) #the fuck is this?????
         self.connected = True
 
     def disconnect(self):

@@ -10,7 +10,7 @@ from couchpotato.core._base.downloader.main import DownloaderBase, ReleaseDownlo
 from couchpotato.core.helpers.encoding import isInt, sp
 from couchpotato.core.helpers.variable import tryFloat, cleanHost
 from couchpotato.core.logger import CPLog
-from synchronousdeluge import DelugeClient
+from deluge_client import DelugeRPCClient
 
 
 log = CPLog(__name__)
